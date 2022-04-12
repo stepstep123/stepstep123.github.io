@@ -13,11 +13,11 @@
 
     <title>
         
-          Tags - 胖胖的博客 | Pangpang&#39;s Blog
+          vscode小技巧 - 胖胖的博客 | Pangpang&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://stepstep123.github.io/tags/">
+    <link rel="canonical" href="http://stepstep123.github.io/2022/04/12/vscode小技巧/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -154,86 +154,163 @@
 
     <!-- Main Content -->
     
-<!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/tag-bg.jpg')">
+<!-- Image to hack wechat -->
+<!-- <img src="http://stepstep123.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Tags</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is Tags.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#vscode" title="vscode">vscode</a>
+                        
+                    </div>
+                    <h1>vscode小技巧</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Jianghua Yu on
+                        2022-04-12
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 标签云 -->
-            <div id='tag_cloud' class="tags">
-                
-                    <a href="#网站" title="网站" rel="1">网站</a>
-                
-                    <a href="#vscode" title="vscode" rel="1">vscode</a>
-                
-            </div>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-            <!-- 标签列表 -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="网站">
-                    <span class="tag-text">网站</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2022/04/11/Mac下配置hexo搭建个人网站/">
-                        <h2 class="post-title">
-                            Mac下配置hexo搭建个人网站
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
+                <h2 id="vscode小技巧"><a href="#vscode小技巧" class="headerlink" title="vscode小技巧"></a>vscode小技巧</h2><p>[TOC]</p>
+<h4 id="一、vscode设置python运行时的相对路径"><a href="#一、vscode设置python运行时的相对路径" class="headerlink" title="一、vscode设置python运行时的相对路径"></a>一、vscode设置python运行时的相对路径</h4><p><strong>问题：右键运行时vscode默认为工程目录，这样相对路径都是错的。</strong><br><strong>解决方法</strong>：</p>
+<ol>
+<li>在终端cd到该文件所在的路径。这样每换一个目录就用cd一次。</li>
+<li>在setting.json加入</li>
+<li>安装koroFileHeader插件</li>
+<li>右下角settings-&gt;settings-&gt;搜索fileheader-&gt;User-&gt;settings.json<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;python.terminal.executeInFileDir&quot;: true,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+
                 <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="vscode">
-                    <span class="tag-text">vscode</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2022/04/12/vscode小技巧/">
-                        <h2 class="post-title">
-                            vscode小技巧
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
 
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/04/11/Mac下配置hexo搭建个人网站/" data-toggle="tooltip" data-placement="top" title="Mac下配置hexo搭建个人网站">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2022/04/12/vscode小技巧/"
+                        data-title="vscode小技巧"
+                        data-url="http://stepstep123.github.io/2022/04/12/vscode%E5%B0%8F%E6%8A%80%E5%B7%A7/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#vscode" title="vscode">vscode</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
 
         </div>
     </div>
-</div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Pangpang';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://stepstep123.github.io/2022/04/12/vscode%E5%B0%8F%E6%8A%80%E5%B7%A7/";
+    var disqus_url = "http://stepstep123.github.io/2022/04/12/vscode%E5%B0%8F%E6%8A%80%E5%B7%A7/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
 
 
     <!-- Footer -->
