@@ -96,14 +96,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -203,7 +203,7 @@
 <h3 id="1-导入包"><a href="#1-导入包" class="headerlink" title="1. 导入包"></a>1. 导入包</h3><h4 id="1-1-导入包的顺序"><a href="#1-1-导入包的顺序" class="headerlink" title="1.1 导入包的顺序"></a>1.1 导入包的顺序</h4><p>查看导包,</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import sys</span><br><span class="line">&gt;&gt;&gt; sys.path</span><br><span class="line">[&#x27;&#x27;, &#x27;/root/anaconda3/lib/python38.zip&#x27;, &#x27;/root/anaconda3/lib/python3.8&#x27;, &#x27;/root/anaconda3/lib/python3.8/lib-dynload&#x27;, &#x27;/root/anaconda3/lib/python3.8/site-packages&#x27;, &#x27;/root/anaconda3/lib/python3.8/site-packages/locket-0.2.1-py3.8.egg&#x27;]</span><br></pre></td></tr></table></figure>
 <p>默认第一个当前路径为最小导入的路径，其次为PYTHONPATH,最后为python的安装默认路径。<br>当我们导入一模块的时候，python解释权从上面的列表中去找改模块，如果上面的路径中无该模块，则抛出异常</p>
-<h3 id="1-2-import指定的包或模块"><a href="#1-2-import指定的包或模块" class="headerlink" title="1.2 import指定的包或模块"></a>1.2 import指定的包或模块</h3><p>先将改路径加入到sys.path列表中，再导入<br><font color=#FF0000> 注意：这里有一个误区，加入的必须是指定目录 </font>  </p>
+<h3 id="1-2-import指定的包或模块"><a href="#1-2-import指定的包或模块" class="headerlink" title="1.2 import指定的包或模块"></a>1.2 import指定的包或模块</h3><p>先将改路径加入到sys.path列表中，再导入<br><font color="#FF0000"> 注意：这里有一个误区，加入的必须是指定目录 </font>  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#文件目录</span><br><span class="line">.</span><br><span class="line">├── import_learning.py</span><br><span class="line">├── __pycache__</span><br><span class="line">│   └── test_main.cpython-38.pyc</span><br><span class="line">├── testA</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   │   └── test_a.cpython-38.pyc</span><br><span class="line">│   └── test_a.py</span><br><span class="line">├── testB</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   │   └── test_b.cpython-38.pyc</span><br><span class="line">│   └── test_b.py</span><br><span class="line">├── testC</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   │   ├── __init__.cpython-38.pyc</span><br><span class="line">│   │   └── test_c.cpython-38.pyc</span><br><span class="line">│   └── test_c.py</span><br><span class="line">└── test_main.py</span><br></pre></td></tr></table></figure>
 
 <p>想要导入testA这个包，出错</p>
