@@ -197,7 +197,10 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="mac-终端显示全路径-配色"><a href="#mac-终端显示全路径-配色" class="headerlink" title="mac_终端显示全路径_配色"></a>mac_终端显示全路径_配色</h1><p>效果：<br><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/210417001.jpg" alt="mac 终端路径显示效果"></p>
+                <h1 id="mac-终端显示全路径-配色"><a href="#mac-终端显示全路径-配色" class="headerlink" title="mac_终端显示全路径_配色"></a>mac_终端显示全路径_配色</h1><p>效果：<br><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/210417001.jpg" alt="mac 终端路径显示效果"><br>卸载前面：<br>终端路径有两个问题，一是显示不是全路径，每次都要pwd显示路径很麻烦；二是路径和前面的用户名主机名颜色相同没有区分开，看着费劲。</p>
+<h3 id="step1-查看mac默认使用的是哪个shell"><a href="#step1-查看mac默认使用的是哪个shell" class="headerlink" title="step1 查看mac默认使用的是哪个shell"></a>step1 查看mac默认使用的是哪个shell</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(base) paul:~/Documents echo $SHELL</span><br><span class="line">/bin/zsh</span><br></pre></td></tr></table></figure>
+<h3 id="step2-更改配置文件"><a href="#step2-更改配置文件" class="headerlink" title="step2 更改配置文件"></a>step2 更改配置文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/zshrc</span><br><span class="line"></span><br><span class="line"># 复制下面的到文件中</span><br><span class="line">function parse_git_branch() &#123;</span><br><span class="line">    git branch 2&gt; /dev/null | sed -n -e &#x27;s/^\* \(.*\)/[\1]/p&#x27;</span><br><span class="line">&#125;</span><br><span class="line">setopt PROMPT_SUBST</span><br><span class="line">export PROMPT=&#x27;%F&#123;green&#125;%m:%11F%~%F&#123;cyan&#125;$(parse_git_branch)%F&#123;white&#125; &#x27; </span><br></pre></td></tr></table></figure>
+<p>如果是bash,则网上搜一下即可，这里主要记录zshrc,网上参考资料过少</p>
 
 
                 <hr>
