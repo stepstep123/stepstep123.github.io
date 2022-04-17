@@ -13,11 +13,11 @@
 
     <title>
         
-          胖胖的博客 | Pangpang&#39;s Blog
+          python中的多进程Multiprocessing - 胖胖的博客 | Pangpang&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://stepstep123.github.io/">
+    <link rel="canonical" href="http://stepstep123.github.io/2022/04/17/python中的多进程Multiprocessing/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -153,331 +153,164 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://stepstep123.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Pangpang&#39;s Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">To Be An Engineer!</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#python" title="python">python</a>
+                        
+                    </div>
+                    <h1>python中的多进程Multiprocessing</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Jianghua Yu on
+                        2022-04-17
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="python中的多进程Multiprocessing"><a href="#python中的多进程Multiprocessing" class="headerlink" title="python中的多进程Multiprocessing"></a>python中的多进程Multiprocessing</h1><p><strong>当一个主程序都是顺序执行的时候，其中主程序有个别步骤需要IO或者cpu耗时较大，则主进程堵塞，影响整体效率，可以考虑多进程</strong></p>
+<h2 id="Multiprocessing"><a href="#Multiprocessing" class="headerlink" title="Multiprocessing"></a>Multiprocessing</h2><p>python 内置了多进程模块Multiprocessing<br>Multiprocessing模块提供了一个Process类，下面演示其用法。</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>功能：当一个函数相对另一个函数是独立的，func不断往全局变量中写入数据，func1要不断取全局变量中的数据，可以采用多进程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import multiprocessing</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">def func(mylist, i):</span><br><span class="line">    print(&quot;进入func&quot;)</span><br><span class="line">    while True:</span><br><span class="line">        print(&#x27;main&#x27;*5)</span><br><span class="line">        i += 1</span><br><span class="line">        mylist.append(i)  # 子进程改变List,主进程跟着改变</span><br><span class="line">        time.sleep(1)</span><br><span class="line"></span><br><span class="line">def func1(mylist):</span><br><span class="line">    print(&quot;进入func1&quot;)</span><br><span class="line">    while True:</span><br><span class="line">        print(&quot;1&quot;*10)</span><br><span class="line">        time.sleep(2)</span><br><span class="line">        print(mylist)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    mylist = multiprocessing.Manager().list()  # 主进程与子进程共享这个List</span><br><span class="line">    p = multiprocessing.Process(target=func, args=(mylist, 0,))</span><br><span class="line">    p1 = multiprocessing.Process(target=func1, args=(mylist,))</span><br><span class="line">    p.start() #启动进程p</span><br><span class="line">    p1.start() #启动进程p1</span><br><span class="line">    p.join() #等待进程p终止</span><br><span class="line">    p1.join() #等待进程p1终止</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">进入func</span><br><span class="line">mainmainmainmainmain</span><br><span class="line">进入func1</span><br><span class="line">1111111111</span><br><span class="line">mainmainmainmainmain</span><br><span class="line">mainmainmainmainmain</span><br><span class="line">[1, 2, 3]</span><br><span class="line">1111111111</span><br><span class="line">mainmainmainmainmain</span><br><span class="line">mainmainmainmainmain</span><br><span class="line">[1, 2, 3, 4, 5]</span><br><span class="line">1111111111</span><br><span class="line">mainmainmainmainmain</span><br><span class="line">mainmainmainmainmain</span><br><span class="line">[1, 2, 3, 4, 5, 6, 7]</span><br></pre></td></tr></table></figure>
+<p>p进程每秒1秒如数据到mylist中，p1进程每2秒获取一次mylist。</p>
+<p>说明：此处进程间的通信是通过全局变量mylist来完成的。常见的进程通信也可以用Queue，Pipes来完成。此处没有涉及到进程锁。</p>
 
 
-<div class="post-preview">
+                <hr>
 
-    <a href="/2022/04/17/python中的多进程Multiprocessing/">
-        <h2 class="post-title">
-            python中的多进程Multiprocessing
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            python中的多进程Multiprocessing当一个主程序都是顺序执行的时候，其中主程序有个别步骤需要IO或者cpu耗时较大，则主进程堵塞，影响整体效率，可以考虑多进程
-Multiprocessingpython 内置了多进程模块MultiprocessingMultiprocessing模块提供了一个Process类，下面演示其用法。
-Usage功能：当一个函数相对另一个函数是独立的......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-17
-    </p>
+                
 
-</div>
-<hr>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/04/17/mac-终端显示全路径-配色/" data-toggle="tooltip" data-placement="top" title="mac_终端显示全路径_配色">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-<div class="post-preview">
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2022/04/17/python中的多进程Multiprocessing/"
+                        data-title="python中的多进程Multiprocessing"
+                        data-url="http://stepstep123.github.io/2022/04/17/python%E4%B8%AD%E7%9A%84%E5%A4%9A%E8%BF%9B%E7%A8%8BMultiprocessing/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
 
-    <a href="/2022/04/17/mac-终端显示全路径-配色/">
-        <h2 class="post-title">
-            mac_终端显示全路径_配色
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            mac_终端显示全路径_配色效果：写在前面：终端路径有两个问题，一是显示不是全路径，每次都要pwd显示路径很麻烦；二是路径和前面的用户名主机名颜色相同没有区分开，看着费劲。
-step1 查看mac默认使用的是哪个shell12(base) paul:~/Documents echo $SHELL/bin/zsh
-step2 更改配置文件12345678vim /etc/zshrc# 复制下面......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-17
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/16/test/">
-        <h2 class="post-title">
-            test
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-16
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/12/python命令/">
-        <h2 class="post-title">
-            python常见命令
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            python常见命令路径查看当前路径
-1234&gt;&gt;&gt; import os&gt;&gt;&gt; os.getcwd() &#x27;/disk2/yujianghua/project/dist-ship/scripts&#x27;&gt;&gt;&gt; 
-
-切换当前路径
-1234&gt;&gt;&gt; os.chdir(&#x27;../&#x27;)&gt;&gt;......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/12/python中的模块与包/">
-        <h2 class="post-title">
-            python中的模块与包
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            python中的模块与包写在前面：自定义一些py文件，在调用的时候总是因为路径问题找不到，仔细研究记录如下。
-
-一、模块与包模块：一个个 py 文件，如a.py,b.py等。包：一个包含__init__.py文件的文件夹。
-1. 导入包1.1 导入包的顺序查看导包,
-123&gt;&gt;&gt; import sys&gt;&gt;&gt; sys.path[&#x27;&#x27;, &......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/12/python-EasyDict/">
-        <h2 class="post-title">
-            python_EasyDict
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            python内置三方库记录一、字典1、EasyDict可以通过属性的方式去访问字典的值例子
-1234from easydict import EasyDict as edictd = edict(&#123;&#x27;foo&#x27;:3, &#x27;bar&#x27;:&#123;&#x27;x&#x27;:1, &#x27;y&#x27;:2&#125;&#125;)print(&......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/12/vscode小技巧/">
-        <h2 class="post-title">
-            vscode小技巧
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            vscode小技巧一、vscode设置python运行时的相对路径问题：右键运行时vscode默认为工程目录，这样相对路径都是错的。解决方法：
-
-在终端cd到该文件所在的路径。这样每换一个目录就用cd一次。
-在setting.json加入
-安装koroFileHeader插件
-右下角settings-&gt;settings-&gt;搜索fileheader-&gt;User-&gt;set......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/11/Mac下配置hexo搭建个人网站/">
-        <h2 class="post-title">
-            Mac下配置hexo搭建个人网站
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Mac下配置hexo搭建个人网站个人网站：stepstep123.github.io一、环境准备1. 安装node.js1.1 官网下载安装：https://nodejs.org/en/
-1.2 双击刚下载的文件，按照默认路径安装
-1.3 安装完成后打开终端，输入node -vnpm -v出现版本号即代表安装成功
-二、开始安装Hexo1. 安装hexosudo npm install -g ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-11
-    </p>
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-
-                <!-- 如果开启评论功能 -->
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#python" title="python" rel="4">python</a>
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#python" title="python">python</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpg" />
-                        
-
-                        
-                            <p>我要成为魔法师!</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/stepstep123">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://blog.csdn.net/weixin_42618420?type=blog">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Pangpang';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://stepstep123.github.io/2022/04/17/python%E4%B8%AD%E7%9A%84%E5%A4%9A%E8%BF%9B%E7%A8%8BMultiprocessing/";
+    var disqus_url = "http://stepstep123.github.io/2022/04/17/python%E4%B8%AD%E7%9A%84%E5%A4%9A%E8%BF%9B%E7%A8%8BMultiprocessing/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
 
 
     <!-- Footer -->
