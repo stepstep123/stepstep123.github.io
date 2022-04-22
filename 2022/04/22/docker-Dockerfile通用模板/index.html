@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          docker-Dockerfile通用模板 - 胖胖的博客 | Pangpang&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://stepstep123.github.io/2022/04/22/docker-Dockerfile通用模板/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Pangpang&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://stepstep123.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#docker" title="docker">docker</a>
+                        
+                    </div>
+                    <h1>docker-Dockerfile通用模板</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Jianghua Yu on
+                        2022-04-22
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="docker-Dockerfile通用模板"><a href="#docker-Dockerfile通用模板" class="headerlink" title="docker-Dockerfile通用模板"></a>docker-Dockerfile通用模板</h2><p>写在前面<br>作为工程人员，每次都需要进行环境隔离。常见的环境隔离有conda管理环境，另一种就是docker。docker有个很好的特点就是，移植性很好,不会因为环境变量等原因出错。</p>
+<h3 id="image常用指令"><a href="#image常用指令" class="headerlink" title="image常用指令"></a>image常用指令</h3><h4 id="拉取所需镜像"><a href="#拉取所需镜像" class="headerlink" title="拉取所需镜像"></a>拉取所需镜像</h4><p>docker pull<br>下面的例子将从 Docker Hub 仓库下载一个 Ubuntu 12.04 操作系统的镜像。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">拉取所需镜像</span><br><span class="line">docker pull ubuntu:<span class="number">12.04</span></span><br></pre></td></tr></table></figure>
+<p>有时候官方仓库注册服务器下载较慢，可以从其他仓库下载。 从其它仓库下载时需要指定完整的仓库注册服务器地址。例如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull dl.dockerpool.com:<span class="number">500</span>/ubuntu:<span class="number">12.04</span></span><br></pre></td></tr></table></figure>
+<h4 id="列出本地镜像"><a href="#列出本地镜像" class="headerlink" title="列出本地镜像"></a>列出本地镜像</h4><p>使用 docker images 显示本地已有的镜像。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line"></span><br><span class="line">REPOSITORY            TAG                               IMAGE ID       CREATED         SIZE</span><br><span class="line">qoe_audio_service     v1<span class="number">.0</span><span class="number">.0</span>                            3b1b4fcd171b   <span class="number">3</span> months ago    <span class="number">16.3</span>GB</span><br><span class="line">nvidia/cuda           <span class="number">11.1</span><span class="number">.1</span>-cudnn8-devel-ubuntu18<span class="number">.04</span>   cab9d5b66568   <span class="number">3</span> months ago    <span class="number">9.35</span>GB</span><br><span class="line">nvidia/cuda           <span class="number">11.2</span><span class="number">.0</span>-cudnn8-devel-ubuntu20<span class="number">.04</span>   066cd50b3e02   <span class="number">3</span> months ago    <span class="number">6.91</span>GB</span><br><span class="line">nvidia/cuda           <span class="number">10.1</span>-cudnn7-devel-ubuntu16<span class="number">.04</span>     1278371227f7   <span class="number">3</span> months ago    <span class="number">3.68</span>GB</span><br><span class="line">nvidia/cuda           <span class="number">9.0</span>-cudnn7-devel-ubuntu16<span class="number">.04</span>      b13c2165c94f   <span class="number">3</span> months ago    <span class="number">2.45</span>GB</span><br><span class="line">ufoym/deepo           latest                            148368bde324   <span class="number">3</span> months ago    <span class="number">19.5</span>GB</span><br><span class="line">qiniudora/dora-ship   v3                                dad729dae6d2   <span class="number">5</span> months ago    <span class="number">4.57</span>GB</span><br><span class="line">pytorch/pytorch       <span class="number">1.10</span><span class="number">.0</span>-cuda11<span class="number">.3</span>-cudnn8-devel      46961cbf2ac7   <span class="number">6</span> months ago    <span class="number">14.4</span>GB</span><br><span class="line">vistart/mmdetection   latest                            085dad9cd4b0   <span class="number">21</span> months ago   <span class="number">6.6</span>GB</span><br></pre></td></tr></table></figure>
+<p>在列出的信息中，可以看到几个字段信息</p>
+<ul>
+<li>来自于那个仓库，比如nvidia</li>
+<li>镜像的标记，比如v1.0.0 latest</li>
+<li>镜像ID号（唯一）</li>
+<li>创建时间</li>
+<li>镜像大小</li>
+</ul>
+<h3 id="启动镜像"><a href="#启动镜像" class="headerlink" title="启动镜像"></a>启动镜像</h3><p><code> </code> <code>python docker run -it qoe_audio_service:v1.0.0 /bin/bash </code> <code> </code><br><font color='green'>如果不指定具体的标记，则默认使用 latest 标记信息。</font></p>
+<h3 id="修改已有的镜像"><a href="#修改已有的镜像" class="headerlink" title="修改已有的镜像"></a>修改已有的镜像</h3><p>先用下载的镜像启动容器或者进入一个需要修改的容器，<br><code> </code> <code>python docker run -it qoe_audio_service:v1.0.0 /bin/bash or docker exec -it 14d22e06dded /bin/bash </code> <code> </code><br>修改容器<br>在容器中添加 json 和 gem 两个应用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@14d22e06dded:/<span class="comment"># gem install json</span></span><br></pre></td></tr></table></figure>
+<p>当结束后，我们使用 exit 来退出，现在我们的容器已经被我们改变了，使用 docker commit 命令来提交更新后的副本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m <span class="string">&#x27;add json&#x27;</span> -a <span class="string">&#x27;paul&#x27;</span> 14d22e06dded vistart/mmdetection:v1<span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<p>其中，-m来指定提交的说明信息；-a可以指定更新人的信息；后面是容器ID;最后指定目标镜像的仓库名和tag信息。创建成功会返回这个镜像的ID.后面正常docker run该镜像即可。</p>
+<h3 id="利用Dockerfile来创建镜像"><a href="#利用Dockerfile来创建镜像" class="headerlink" title="利用Dockerfile来创建镜像"></a>利用Dockerfile来创建镜像</h3><p>首先创建一个Dockerfile,包含一些创建镜像的指令；使用docker build来创建新的镜像。<br>创建一个目录和一个Dockerfile,该目录包含你的代码和需要的文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── client.py</span><br><span class="line">├── Dockerfile</span><br><span class="line">├── README.md</span><br><span class="line">└── service</span><br></pre></td></tr></table></figure>
+<p>Dockerfile中每一条指令都创建镜像的一层，所以为了避免镜像过于复杂，占得内存过大，一般尽量减少层多行命令用&amp;写一起。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Dockerfile</span></span><br><span class="line">FROM ubuntu:<span class="number">14.04</span></span><br><span class="line">RUN apt-get -qq upddate</span><br><span class="line">RUN apt-get install vim</span><br></pre></td></tr></table></figure>
+<h4 id="docker-file命令"><a href="#docker-file命令" class="headerlink" title="docker file命令"></a>docker file命令</h4><h5 id="FROOM-指定基础镜像，必须为第一个命令"><a href="#FROOM-指定基础镜像，必须为第一个命令" class="headerlink" title="FROOM 指定基础镜像，必须为第一个命令"></a>FROOM 指定基础镜像，必须为第一个命令</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line">    FROM &lt;image&gt;</span><br><span class="line">示例：</span><br><span class="line">    FROM python:<span class="number">3.6</span></span><br><span class="line">注：</span><br><span class="line">    tag是可选的，如果不选定tag，会使用latest版本的基础镜像</span><br></pre></td></tr></table></figure>
+<h5 id="RUN-构建镜像时执行命令"><a href="#RUN-构建镜像时执行命令" class="headerlink" title="RUN 构建镜像时执行命令"></a>RUN 构建镜像时执行命令</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#shell 执行</span></span><br><span class="line">格式：</span><br><span class="line">    RUN &lt;command&gt;</span><br><span class="line">示例：</span><br><span class="line">    RUN pip install easydict</span><br><span class="line">注：</span><br><span class="line">    RUN指令创建的中间镜像会被缓存，并会在下次构建时使用。如果不想使用这些缓存镜像，可以在构建时指定--no-cache参数</span><br></pre></td></tr></table></figure>
+<h5 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h5><p>将文件添加到容器中，tar类型文件会自动解压，可以访问网络资源，如wget等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式</span><br><span class="line">    ADD &lt;src&gt; &lt;dst&gt;</span><br><span class="line">示例：</span><br><span class="line">    ADD ./Yolov5_DeepSort_Pytorch_ship /yolov5ship</span><br></pre></td></tr></table></figure>
+<h4 id="COPY"><a href="#COPY" class="headerlink" title="COPY"></a>COPY</h4><p>功能类似ADD,但是不会自动解压文件，也不能访问网络资源</p>
+<h4 id="ENV"><a href="#ENV" class="headerlink" title="ENV"></a>ENV</h4><p>设置环境变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line">    ENV &lt;key&gt;&lt;value&gt; <span class="comment">#&lt;key&gt;之后的所有内容俊辉被视为&lt;value&gt;的组成部分，因此，一次只能设置一个便令</span></span><br><span class="line">示例：</span><br><span class="line">    ENV WORKPATH=<span class="string">&quot;/workspace&quot;</span></span><br><span class="line">    ENV myName John</span><br></pre></td></tr></table></figure>
+
+<h4 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h4><p>工作目录，类似于cd命令，chdir()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line">    WORKDIR /path/to/workdir</span><br><span class="line">示例：</span><br><span class="line">    WORKDIR /a（这时工作目录为/a）</span><br><span class="line">    WORKDIR b (这时从a切换到b了，/a/b)</span><br><span class="line">注：</span><br><span class="line">    通过WORKDIR设置工作目录后，Dockfile中其后面的命令RUN、CMD、ADD、COPY等命令都会在该目录下执行。</span><br></pre></td></tr></table></figure>
+
+<h4 id="USER"><a href="#USER" class="headerlink" title="USER"></a>USER</h4><p>指定容器运行时的用户名或UID</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line">    USER user</span><br><span class="line">示例：</span><br><span class="line">    USER root</span><br></pre></td></tr></table></figure>
+
+<h4 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h4><p>构建镜像后调用，也是在容器启动时才调用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式</span><br><span class="line">    CMD <span class="string">&quot;python&quot;</span> <span class="string">&quot;/yolov5ship/track_vv.py&quot;</span></span><br><span class="line">注意： </span><br><span class="line">    CMD不同于RUN, CMD用于指定在容器启动时所要执行的命令，而RUN用于指定镜像构建时才执行的命令</span><br></pre></td></tr></table></figure>
+<h3 id="Dockerfile-模板"><a href="#Dockerfile-模板" class="headerlink" title="Dockerfile 模板"></a>Dockerfile 模板</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># base docker image</span></span><br><span class="line">FROM anibali/pytorch:<span class="number">1.8</span><span class="number">.1</span>-cuda11<span class="number">.1</span>-ubuntu20<span class="number">.04</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set up time zone.</span></span><br><span class="line">ENV TZ=UTC</span><br><span class="line">RUN sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install system libraries required by OpenCV.</span></span><br><span class="line">RUN sudo apt-get update \</span><br><span class="line"> &amp;&amp; sudo apt-get install -y libgl1-mesa-glx libgtk2<span class="number">.0</span>-<span class="number">0</span> libsm6 libxext6 \</span><br><span class="line"> &amp;&amp; sudo rm -rf /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装python程序运行程序的所有依赖</span></span><br><span class="line">RUN python -m pip install --upgrade --no-cache-<span class="built_in">dir</span> --ignore-installed -i https://mirrors.aliyun.com/pypi/simple \</span><br><span class="line">    flask==<span class="number">0.12</span><span class="number">.2</span> \</span><br><span class="line"></span><br><span class="line">RUN python -m pip install --upgrade --no-cache-<span class="built_in">dir</span> --ignore-installed --no-deps -i https://mirrors.aliyun.com/pypi/simple timm==<span class="number">0.3</span><span class="number">.2</span> </span><br><span class="line"></span><br><span class="line">USER root</span><br><span class="line">ENV WORKPATH=<span class="string">&quot;/workspace&quot;</span></span><br><span class="line">ENV DEVICE=<span class="string">&quot;cuda:0&quot;</span></span><br><span class="line">ENV LC_ALL=C.UTF-<span class="number">8</span> \</span><br><span class="line">    LANG=C.UTF-<span class="number">8</span> </span><br><span class="line"></span><br><span class="line">RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br><span class="line">RUN echo <span class="string">&#x27;Asia/Shanghai&#x27;</span> &gt; /etc/timezone</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建工作目录    </span></span><br><span class="line">RUN sudo mkdir -p $&#123;WORKPATH&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将当前路径的文件复制到容器内对应的目录下</span></span><br><span class="line">COPY ./ $&#123;WORKPATH&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到工作目录</span></span><br><span class="line">WORKDIR $&#123;WORKPATH&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入服务代码所在的路径    </span></span><br><span class="line">WORKDIR $&#123;WORKPATH&#125;/service</span><br><span class="line"><span class="comment"># 通过gunicorn启动服务</span></span><br><span class="line">CMD gunicorn -c gunicorn.conf.py --log-config log.conf app:app</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2022/04/22/linux-管理包的方式/" data-toggle="tooltip" data-placement="top" title="linux-管理包的方式">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/04/20/python-tqdm/" data-toggle="tooltip" data-placement="top" title="python-tqdm">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2022/04/22/docker-Dockerfile通用模板/"
+                        data-title="docker-Dockerfile通用模板"
+                        data-url="http://stepstep123.github.io/2022/04/22/docker-Dockerfile%E9%80%9A%E7%94%A8%E6%A8%A1%E6%9D%BF/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#docker" title="docker">docker</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Pangpang';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://stepstep123.github.io/2022/04/22/docker-Dockerfile%E9%80%9A%E7%94%A8%E6%A8%A1%E6%9D%BF/";
+    var disqus_url = "http://stepstep123.github.io/2022/04/22/docker-Dockerfile%E9%80%9A%E7%94%A8%E6%A8%A1%E6%9D%BF/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/stepstep123">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://blog.csdn.net/weixin_42618420?type=blog">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Pangpang&#39;s Blog 2022 
+                    <br>
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://stepstep123.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<!-- <img src="http://stepstep123.github.io/img/icon_wechat.png" width="0" height="0" /> -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

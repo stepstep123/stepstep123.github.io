@@ -190,6 +190,111 @@
 
 <div class="post-preview">
 
+    <a href="/2022/04/22/linux-管理包的方式/">
+        <h2 class="post-title">
+            linux-管理包的方式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            linux-管理包的方式linux 系统分类主要是两类
+
+RedHat系列：Redhat、Centos、Fedora等
+Debain系列：Debian、Ubuntu等
+
+安装包的方式
+RedHat系列
+常见的安装格式rpm包，安装rpm包的命令是 rpm -args
+包管理工具yum
+支持tar包1234#installyum install packname#uninstallyum re......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Jianghua Yu on
+        2022-04-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/04/22/docker-Dockerfile通用模板/">
+        <h2 class="post-title">
+            docker-Dockerfile通用模板
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            docker-Dockerfile通用模板写在前面作为工程人员，每次都需要进行环境隔离。常见的环境隔离有conda管理环境，另一种就是docker。docker有个很好的特点就是，移植性很好,不会因为环境变量等原因出错。
+image常用指令拉取所需镜像docker pull下面的例子将从 Docker Hub 仓库下载一个 Ubuntu 12.04 操作系统的镜像。
+12拉取所需镜像dock......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Jianghua Yu on
+        2022-04-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/04/20/python-tqdm/">
+        <h2 class="post-title">
+            python-tqdm
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            python-tqdm用法tqdm是一个快速，可扩展的Python进度条，可以在python长循环中添加一个进度提示信息，避免假死或者不知道进度。用法：
+1tqdm(iterator)
+示例：
+12345from tqdm import tqdmimport timefor i in tqdm(range(10)):    print(i)    time.sleep(1)
+结果展示：
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Jianghua Yu on
+        2022-04-20
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/04/17/pythonArgparse简要用法总结/">
+        <h2 class="post-title">
+            pythonArgparse简要用法总结
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            argparse简要用法总结基本框架
+下面使用argparse从命令行获取用户信息，让后打印。假设python文件名为argparse_learning.py
+
+基本框架
+
+1234567891011121314151617#file-name:argparse_learningimport argparsedef parse_args():  parse = argparse.Argume......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Jianghua Yu on
+        2022-04-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2022/04/17/python带星号的函数参数/">
         <h2 class="post-title">
             python带星号的函数参数
@@ -324,110 +429,16 @@ step2 更改配置文件12345678vim /etc/zshrc# 复制下面......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2022/04/12/python中的模块与包/">
-        <h2 class="post-title">
-            python中的模块与包
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            python中的模块与包写在前面：自定义一些py文件，在调用的时候总是因为路径问题找不到，仔细研究记录如下。
-
-一、模块与包模块：一个个 py 文件，如a.py,b.py等。包：一个包含__init__.py文件的文件夹。
-1. 导入包1.1 导入包的顺序查看导包,
-123&gt;&gt;&gt; import sys&gt;&gt;&gt; sys.path[&#x27;&#x27;, &......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/12/python-EasyDict/">
-        <h2 class="post-title">
-            python_EasyDict
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            python内置三方库记录一、字典1、EasyDict可以通过属性的方式去访问字典的值例子
-1234from easydict import EasyDict as edictd = edict(&#123;&#x27;foo&#x27;:3, &#x27;bar&#x27;:&#123;&#x27;x&#x27;:1, &#x27;y&#x27;:2&#125;&#125;)print(&......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/12/vscode小技巧/">
-        <h2 class="post-title">
-            vscode小技巧
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            vscode小技巧一、vscode设置python运行时的相对路径问题：右键运行时vscode默认为工程目录，这样相对路径都是错的。解决方法：
-
-在终端cd到该文件所在的路径。这样每换一个目录就用cd一次。
-在setting.json加入
-安装koroFileHeader插件
-右下角settings-&gt;settings-&gt;搜索fileheader-&gt;User-&gt;set......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/11/Mac下配置hexo搭建个人网站/">
-        <h2 class="post-title">
-            Mac下配置hexo搭建个人网站
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Mac下配置hexo搭建个人网站并发
-个人网站：stepstep123.github.io一、环境准备1. 安装node.js1.1 官网下载安装：https://nodejs.org/en/
-1.2 双击刚下载的文件，按照默认路径安装
-1.3 安装完成后打开终端，输入node -vnpm -v出现版本号即代表安装成功
-二、开始安装Hexo1. 安装hexosudo npm install ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Jianghua Yu on
-        2022-04-11
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
 
 <ul class="pager">
     
+    
+        <li class="next">
+            <a href="/page/2/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -457,7 +468,11 @@ step2 更改配置文件12345678vim /etc/zshrc# 复制下面......
                             
                         
                             
-                            <a href="/tags/#python" title="python" rel="6">python</a>
+                            <a href="/tags/#python" title="python" rel="8">python</a>
+                            
+                        
+                            
+                        
                             
                         
                             
