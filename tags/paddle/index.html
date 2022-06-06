@@ -13,11 +13,11 @@
 
     <title>
         
-          python-python中插入shell命令 - 胖胖的博客 | Pangpang&#39;s Blog
+          胖胖的博客 | Pangpang&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://stepstep123.github.io/2022/05/15/python-python中插入shell命令/">
+    <link rel="canonical" href="http://stepstep123.github.io/tags/paddle/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -153,165 +153,7 @@
 
 
     <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
-<!-- <img src="http://stepstep123.github.io/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/img/home-bg.jpg')
-    }
-</style>
-<header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#python" title="python">python</a>
-                        
-                    </div>
-                    <h1>python-python中插入shell命令</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Jianghua Yu on
-                        2022-05-15
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                <h2 id="subprocess"><a href="#subprocess" class="headerlink" title="subprocess"></a>subprocess</h2><h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line">cmd = <span class="string">&#x27;cat a.py; cat b.py&#x27;</span></span><br><span class="line">subprocess.call(cmd, shell=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># subprocess.call(cmd, shell=False)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># out</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello.py&#x27;</span>)<span class="built_in">print</span>(<span class="string">&#x27;b.py&#x27;</span></span><br></pre></td></tr></table></figure>
-<h4 id="subprocess-shell-x3D-False-与shell-x3D-True的区别"><a href="#subprocess-shell-x3D-False-与shell-x3D-True的区别" class="headerlink" title="subprocess shell&#x3D;False 与shell&#x3D;True的区别"></a>subprocess shell&#x3D;False 与shell&#x3D;True的区别</h4><p>shell &#x3D; True<br>会让subprocess.call接受字符串类型的变量作为命令，并调用shell去执行这个字符串<br>shell &#x3D; False<br>subprocess.call只接受数组变量作为命令，并将数组的第一个参数元素作为命令，剩下的全部作为该命令参数。</p>
-<h2 id="subprocess-1"><a href="#subprocess-1" class="headerlink" title="subprocess"></a>subprocess</h2><h3 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">cmd = <span class="string">&#x27;cat a.py; cat b.py&#x27;</span></span><br><span class="line">os.system(cmd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># out</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello.py&#x27;</span>)<span class="built_in">print</span>(<span class="string">&#x27;b.py&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>只接受一个参数</p>
-
-
-                <hr>
-
-                
-
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2022/06/06/paddle-安装NCCL/" data-toggle="tooltip" data-placement="top" title="paddle-安装NCCL">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2022/05/10/Linux-screen命令/" data-toggle="tooltip" data-placement="top" title="Linux-screen命令">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
-
-                
-                <!-- 多说评论框 start -->
-                <div class="comment">
-                    <div class="ds-thread"
-                        data-thread-key="2022/05/15/python-python中插入shell命令/"
-                        data-title="python-python中插入shell命令"
-                        data-url="http://stepstep123.github.io/2022/05/15/python-python%E4%B8%AD%E6%8F%92%E5%85%A5shell%E5%91%BD%E4%BB%A4/" >
-                    </div>
-                </div>
-                <!-- 多说评论框 end -->
-                
-
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                
-
-            </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#python" title="python">python</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
-        </div>
-    </div>
-</article>
-
-
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    // dynamic User by Hux
-    var _user = 'Pangpang';
-
-    // duoshuo comment query.
-    var duoshuoQuery = {short_name: _user };
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
-<!-- 多说公共JS代码 end -->
-
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "http://stepstep123.github.io/2022/05/15/python-python%E4%B8%AD%E6%8F%92%E5%85%A5shell%E5%91%BD%E4%BB%A4/";
-    var disqus_url = "http://stepstep123.github.io/2022/05/15/python-python%E4%B8%AD%E6%8F%92%E5%85%A5shell%E5%91%BD%E4%BB%A4/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-
+    <!-- Default Archive layout, we use archives instead. -->
 
     <!-- Footer -->
     <!-- Footer -->
