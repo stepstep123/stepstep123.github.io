@@ -13,11 +13,11 @@
 
     <title>
         
-          About - 胖胖的博客 | Pangpang&#39;s Blog
+          目标检测Anchor - 胖胖的博客 | Pangpang&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://stepstep123.github.io/about/">
+    <link rel="canonical" href="http://stepstep123.github.io/2022/06/14/目标检测Anchor/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -153,215 +153,159 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://stepstep123.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is Pangpang.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#深度学习基础" title="深度学习基础">深度学习基础</a>
+                        
+                    </div>
+                    <h1>目标检测Anchor</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Jianghua Yu on
+                        2022-06-14
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <blockquote>
-<p>写写代码，做做设计，看看产品。<br>世界那么大，多玩玩看看。</p>
-</blockquote>
-<p>9月21日上午，阳光明媚，鲜花斗艳。帕洛阿尔托苹果店里欢声笑语，人头攒动。苹果公司首席执行官蒂姆·库克先生在店长欧阳猛南陪同下，不远千米，深入到一线店面，为那里的员工带去节曰的问候和良好的祝愿。<br><br>“果粉们，你们辛苦了，我代表某果公司，祝你们身体健康，生活幸福，工作成功！”库克亲切慰问广大员工和顾客，并就iOS7、iPhone 5S和iPhone 5C的销售状况进行调研。 <br><br>“您现在每月工资有多少？肾5S拿到了吗？”在店里，库克关切地向果粉们问起这一问题。当听说果粉们排到了5S，库克满意地连连点头。接着他指出，近年来苹果事业发展取得巨大成就，特别是iPhone影响剧增，老百姓对iOS满意度逐步提高，在这个转变过程中，果粉的辛勤工作功不可没。<br><br>库克看到一个中国小朋友在排队买iPhone 5S，亲切的问：“5288元一台能承受不？”小朋友回答到：“能！”当得知这位小朋友卖了一个肾来买iPhone 5S时，库克叮嘱道：“在支持苹果的同时，也要爱护身体。”<br><br>库克与购买苹果手机的果粉们兴致勃勃地参观了苹果专卖店，和员工们拉了拉家常，并饶有兴趣地玩了四盘切西瓜游戏，与普通员工同乐。<br><br>在交谈中，库克多次关心地强调：“有了iPhone 5C，就不卖iPhone 5了。”并对顾客说：“好好休息，身体是革命的本钱嘛！”会谈始终在亲切友好的气氛中进行。<br><br>顾客们就库克的讲话达成了广泛的共识，并承认世界上只有iOS最流畅，要紧紧的团结在以库克先生为首席执行官的苹果公司集体周围，一心一意抓学习，聚精会神谋发展。<br><br><br>帕洛阿尔托苹果专卖店当日原则通过《蒂姆·库克首席执行官在加州新苹果店的讲话纪要》，并下发各分店认真学习、研讨。</p>
-<p style="text-align:right;">
-    —— <a target="_blank" rel="noopener" href="http://www.zhihu.com/question/19687065">李书航 － 什么是「共产中文腔调」？ </a>
-</p>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-                <!-- 如果开启评论功能 -->
+                <h1 id="目标检测Anchor"><a href="#目标检测Anchor" class="headerlink" title="目标检测Anchor"></a>目标检测Anchor</h1><h2 id="什么是Anchor"><a href="#什么是Anchor" class="headerlink" title="什么是Anchor"></a>什么是Anchor</h2><p>在Feature map上预设好的不同大小（scale）、不同长宽比（rato）的参照框。<br><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220614_7.jpeg"><br>通过神经网络的输出，<strong>每个anchor是否包含（或者说与物体有较大重叠，也就是IOU较大）物体，以及被检测物体相对于anchor的中心点偏移量</strong><br><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220614_8.jpeg"><br>一般的目标检测的网络可能有成千上万个anchor，例如标准的SSD在300<em>300输入下有8732个anchor。<br>如上图所示，神经网络的输出，*<em>也就是每个anchor认为自己是否含有物体的概率，物体中心点与anchor自身的中心点的偏移量，以及相对于anchor宽高的比例。</em></em><br>图中，红色的anchor就以99%的概率认为它是一只猫，并同时给出了猫的实际位置相对于该anchor的偏移量，这样解码后就得出了猫的实际位置，再通过非极大值抑制（nms）筛选，他就能顺利输出。绿色和紫色的anchor概率相对来说低很多。<br>在训练的时候，也就是给每张图片的物体的Bounding Box，相对于anchor进行编码，如果物体的Bounding Box与某个anchor的IoU较大，例如大于0.5就认为是正样本，否则是负样本（当然，也有算法将大于0.7的设为正样本，小于0.3的算负样本，中间的不计算损失）。</p>
+<p>以SSD作者给出的示例图为例，图中有一只猫和一只狗，这只猫在8x8的特征图上所设置anchor中，有两个（蓝色部分）与猫的IoU较大，可以认为是正样本，而对于狗，在4x4的特征图上的设置的anchor，有一个（红色部分）与狗的IoU较大，可以认为是正样本。其他的，都算作负样本。在实际中，因为anchor非常密集，所以SSD算法中，会有多个anchor与物体的IoU大于阈值，所以可能多个anchor都是对应同一个物体的正样本（例如这只猫，就可能有不止2个匹配的正样本）<br><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220614_9.jpeg"><br>看到这里大家应该比较明白了，在训练的时候，<strong>需要anchor的大小和长宽比与待检测的物体尺度基本一致，才可能让anchor与物体的IoU大于阈值，成为正样本，否则，可能anchor为正样本的数目特别少，就会导致漏检很多</strong>。<br><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220614_10.jpeg"><br>我们举个例子，如果您要检测道路两边的电线杆，电线杆的宽高比可能不止1:10，而且特别细。如果您设置的anchor长宽比为1:1、1:2、 2:1、 1:3、 3:1这五个不同的长宽比，那可能到导致在训练的时候，<strong>没有哪个anchor与电线杆的IoU大于0.5，导致全部为负样本</strong>，那么，这样的anchor设置，模型怎么可能检测出来电线杆呢？<strong>（虽然我们在实现SSD算法的时候，即使某个物体与所有anchor的IoU都不大于0.5的阈值，也会可怜可怜它，给它强行分配一个IoU最大的anchor，即使IoU只有0.3</strong>，但是这样，每个物体只能分配一个，而且宽高偏移量还比较大，导致回归不准）。</p>
+<p>到这里，大家应该知道了，对于目标检测，anchor合理设置大小和宽高比，可以说非常重要。那么，如何科学的设置anchor呢？</p>
+
+
+                <hr>
+
                 
-                    <hr>
 
+                <ul class="pager">
                     
-                    <!-- 多说评论框 start -->
-                    <div class="comment">
-                        <div class="ds-thread"
-                            data-thread-key="about/index.html"
-                            data-title="About"
-                            data-url="http://stepstep123.github.io/about/index.html" >
-                        </div>
+                    
+                        <li class="next">
+                            <a href="/2022/06/14/卷积的感受野/" data-toggle="tooltip" data-placement="top" title="卷积的感受野">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2022/06/14/目标检测Anchor/"
+                        data-title="目标检测Anchor"
+                        data-url="http://stepstep123.github.io/2022/06/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8BAnchor/" >
                     </div>
-                    <!-- 多说评论框 end -->
-                    
+                </div>
+                <!-- 多说评论框 end -->
+                
 
-                    
-                    <!-- disqus 评论框 start -->
-                    <div class="comment">
-                        <div id="disqus_thread" class="disqus-thread"></div>
-                    </div>
-                    <!-- disqus 评论框 end -->
-                    
-
-
-                    
-                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        // dynamic User by Hux
-                        var _user = 'Pangpang';
-
-                        // duoshuo comment query.
-                        var duoshuoQuery = {short_name: _user };
-                        (function() {
-                            var ds = document.createElement('script');
-                            ds.type = 'text/javascript';ds.async = true;
-                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                            ds.charset = 'UTF-8';
-                            (document.getElementsByTagName('head')[0]
-                             || document.getElementsByTagName('body')[0]).appendChild(ds);
-                        })();
-                    </script>
-                    <!-- 多说公共JS代码 end -->
-                    
-
-                    
-                    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = "hexo-theme-huxblog";
-                        var disqus_identifier = "http://stepstep123.github.io/about/index.html";
-                        var disqus_url = "http://stepstep123.github.io/about/index.html";
-
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-
-                        
-                    </script>
-                    <!-- disqus 公共JS代码 end -->
-                    
-
-
-
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#python" title="python" rel="9">python</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#linux" title="linux" rel="2">linux</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#深度学习基础" title="深度学习基础" rel="2">深度学习基础</a>
-                            
+                       
+                          <a class="tag" href="/tags/#深度学习基础" title="深度学习基础">深度学习基础</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpg" />
-                        
-
-                        
-                            <p>我要成为魔法师!</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/stepstep123">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://blog.csdn.net/weixin_42618420?type=blog">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Pangpang';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "http://stepstep123.github.io/2022/06/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8BAnchor/";
+    var disqus_url = "http://stepstep123.github.io/2022/06/14/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8BAnchor/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
 
 
     <!-- Footer -->
