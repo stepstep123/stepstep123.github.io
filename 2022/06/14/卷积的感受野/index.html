@@ -203,9 +203,11 @@
 <h3 id="深层特征检测大目标，为什么不同时检测小目标？"><a href="#深层特征检测大目标，为什么不同时检测小目标？" class="headerlink" title="深层特征检测大目标，为什么不同时检测小目标？"></a>深层特征检测大目标，为什么不同时检测小目标？</h3><p>深层特征有足够大的感受野，感受野大于检测的目标，理论上来说就可以检测到结果。按照道理肯定也能检测小目标。<br>简单来说是因为stride太大，层层卷积之后，Feature map逐渐减小，感受野逐渐增大。<strong>检测的时候在feature map上的每个像素点生成指定scale rato的Anchor,由于feature map小，产生的anchor覆盖密度就越低，那么anchor映射回原图因为非极大值抑制（nms）过滤掉，所以小目标也检不出来。</strong></p>
 <h3 id="怎么计算感受野"><a href="#怎么计算感受野" class="headerlink" title="怎么计算感受野"></a>怎么计算感受野</h3><p><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220614_2.jpg"></p>
 <ul>
-<li>$$RF_n表示第 n层的感受野，第0层的感受野默认为1$$</li>
-<li>​</li>
+<li>$$ RF_n表示第 n层的感受野，第0层的感受野默认为1 $$</li>
+<li>$$f_K 表示卷积核的大小$$</li>
+<li>$$S_i表示第i层的步长$$</li>
 </ul>
+<p>​</p>
 
 
                 <hr>
