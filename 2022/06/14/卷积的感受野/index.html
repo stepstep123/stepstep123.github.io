@@ -13,11 +13,11 @@
 
     <title>
         
-          paddle-安装NCCL - 胖胖的博客 | Pangpang&#39;s Blog
+          卷积的感受野 - 胖胖的博客 | Pangpang&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://stepstep123.github.io/2022/06/06/paddle-安装NCCL/">
+    <link rel="canonical" href="http://stepstep123.github.io/2022/06/14/卷积的感受野/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#paddle" title="paddle">paddle</a>
+                          <a class="tag" href="/tags/#深度学习基础" title="深度学习基础">深度学习基础</a>
                         
                     </div>
-                    <h1>paddle-安装NCCL</h1>
+                    <h1>卷积的感受野</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Jianghua Yu on
-                        2022-06-06
+                        2022-06-14
                     </span>
                 </div>
             </div>
@@ -197,36 +197,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="Paddle-安装NCCL"><a href="#Paddle-安装NCCL" class="headerlink" title="Paddle-安装NCCL"></a>Paddle-安装NCCL</h2><p>在用PaddleDetection的过程中，希望用多卡训练自己的模型，官方给出了下面的要求。</p>
-<p><font color='red'>如果您希望在多卡环境下使用PaddleDetection，请首先安装NCCL<br></font></p>
-<p>步骤</p>
-<h3 id="1-查看自己安装的cuda版本"><a href="#1-查看自己安装的cuda版本" class="headerlink" title="1.查看自己安装的cuda版本"></a>1.查看自己安装的cuda版本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/cuda/version.txt</span><br><span class="line"></span><br><span class="line">## 输出</span><br><span class="line">CUDA Version 10.1.168</span><br></pre></td></tr></table></figure>
-<h3 id="2-安装对应的nccl版本"><a href="#2-安装对应的nccl版本" class="headerlink" title="2. 安装对应的nccl版本"></a>2. 安装对应的nccl版本</h3><p>官方教程：<br><a target="_blank" rel="noopener" href="https://docs.nvidia.com/deeplearning/nccl/install-guide/#down">官方教程</a></p>
-<p>下载对应CUDA版的NCCL:<br><a target="_blank" rel="noopener" href="https://developer.nvidia.com/nccl/nccl-download">NCCL下载链接</a><br>注意：这里要注册登录进去才可以，选择自己cuda版本</p>
-<p><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220606_1.jpg"></p>
-<p><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220606_3.jpg"></p>
-<p><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220606_2.jpg"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt update</span><br><span class="line"></span><br><span class="line">sudo apt install libnccl2=<span class="number">2.8</span><span class="number">.3</span>-<span class="number">1</span>+cuda10<span class="number">.1</span> libnccl-dev=<span class="number">2.8</span><span class="number">.3</span>-<span class="number">1</span>+cuda10<span class="number">.1</span></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> paddle</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>paddle.utils.run_check()</span><br><span class="line">Running verify PaddlePaddle program ...</span><br><span class="line">W0606 <span class="number">18</span>:<span class="number">27</span>:<span class="number">40.653196</span> <span class="number">55568</span> device_context.cc:<span class="number">447</span>] Please NOTE: device: <span class="number">0</span>, GPU Compute Capability: <span class="number">7.0</span>, Driver API Version: <span class="number">10.1</span>, Runtime API Version: <span class="number">10.1</span></span><br><span class="line">W0606 <span class="number">18</span>:<span class="number">27</span>:<span class="number">40.656558</span> <span class="number">55568</span> device_context.cc:<span class="number">465</span>] device: <span class="number">0</span>, cuDNN Version: <span class="number">8.0</span>.</span><br><span class="line">PaddlePaddle works well on <span class="number">1</span> GPU.</span><br><span class="line">W0606 <span class="number">18</span>:<span class="number">28</span>:<span class="number">01.129779</span> <span class="number">55568</span> fuse_all_reduce_op_pass.cc:<span class="number">76</span>] Find all_reduce operators: <span class="number">2.</span> To make the speed faster, some all_reduce ops are fused during training, after fusion, the number of all_reduce ops <span class="keyword">is</span> <span class="number">2.</span></span><br><span class="line">PaddlePaddle works well on <span class="number">4</span> GPUs.</span><br><span class="line">PaddlePaddle <span class="keyword">is</span> installed successfully! Let<span class="string">&#x27;s start deep learning with PaddlePaddle now.</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h2 id="卷积的感受野"><a href="#卷积的感受野" class="headerlink" title="卷积的感受野"></a>卷积的感受野</h2><h3 id="什么是感受野"><a href="#什么是感受野" class="headerlink" title="什么是感受野"></a>什么是感受野</h3><p><strong>是指输出特征图上某个像素对应到输入空间（原图）中的区域范围。所以感受野可以理解为特征图像素到输入区域的映射。</strong><br><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220614_1.jpg"></p>
+<p>如图所示，黄色部分为最外层输出特征；左上角像素对应的内层的感受野为绿色区域，依次类推，最后推到原图上区域。</p>
+<h3 id="为什么浅层特征预测小目标，深层特征预测大目标"><a href="#为什么浅层特征预测小目标，深层特征预测大目标" class="headerlink" title="为什么浅层特征预测小目标，深层特征预测大目标"></a>为什么浅层特征预测小目标，深层特征预测大目标</h3><p>很显然，深层特征，即黄色特征映射回原图，感受野大，能够捕捉到大目标的全部特征，所以深层特征预测大目标。<br>蓝色（浅层）特征，感，受野小，对于小目标来说，能够很全面的捕捉到其特征，所以浅层特征预测大目标。<br>反过来想：如果浅层特征预测大目标，由于感受野太小，只能看到大目标的一部分特征（大象的一部分），就会有盲人摸象的意思，全靠猜。</p>
+<h3 id="深层特征检测大目标，为什么不同时检测小目标？"><a href="#深层特征检测大目标，为什么不同时检测小目标？" class="headerlink" title="深层特征检测大目标，为什么不同时检测小目标？"></a>深层特征检测大目标，为什么不同时检测小目标？</h3><p>深层特征有足够大的感受野，感受野大于检测的目标，理论上来说就可以检测到结果。按照道理肯定也能检测小目标。<br>简单来说是因为stride太大，层层卷积之后，Feature map逐渐减小，感受野逐渐增大。<strong>检测的时候在feature map上的每个像素点生成指定scale rato的Anchor,由于feature map小，产生的anchor覆盖密度就越低，那么anchor映射回原图因为非极大值抑制（nms）过滤掉，所以小目标也检不出来。</strong></p>
+<h3 id="怎么计算感受野"><a href="#怎么计算感受野" class="headerlink" title="怎么计算感受野"></a>怎么计算感受野</h3><p><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220614_2.jpg"></p>
+<ul>
+<li>$$RF_n表示第 n层的感受野，第0层的感受野默认为1$$</li>
+<li>​</li>
+</ul>
 
 
                 <hr>
@@ -235,13 +214,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2022/06/11/datasetRecord/" data-toggle="tooltip" data-placement="top" title="datasetRecord">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2022/05/15/python-python中插入shell命令/" data-toggle="tooltip" data-placement="top" title="python-python中插入shell命令">Next Post &rarr;</a>
+                            <a href="/2022/06/11/datasetRecord/" data-toggle="tooltip" data-placement="top" title="datasetRecord">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -250,9 +225,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2022/06/06/paddle-安装NCCL/"
-                        data-title="paddle-安装NCCL"
-                        data-url="http://stepstep123.github.io/2022/06/06/paddle-%E5%AE%89%E8%A3%85NCCL/" >
+                        data-thread-key="2022/06/14/卷积的感受野/"
+                        data-title="卷积的感受野"
+                        data-url="http://stepstep123.github.io/2022/06/14/%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%84%9F%E5%8F%97%E9%87%8E/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -284,7 +259,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#paddle" title="paddle">paddle</a>
+                          <a class="tag" href="/tags/#深度学习基础" title="深度学习基础">深度学习基础</a>
                         
                     </div>
                 </section>
@@ -323,8 +298,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "http://stepstep123.github.io/2022/06/06/paddle-%E5%AE%89%E8%A3%85NCCL/";
-    var disqus_url = "http://stepstep123.github.io/2022/06/06/paddle-%E5%AE%89%E8%A3%85NCCL/";
+    var disqus_identifier = "http://stepstep123.github.io/2022/06/14/%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%84%9F%E5%8F%97%E9%87%8E/";
+    var disqus_url = "http://stepstep123.github.io/2022/06/14/%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%84%9F%E5%8F%97%E9%87%8E/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
