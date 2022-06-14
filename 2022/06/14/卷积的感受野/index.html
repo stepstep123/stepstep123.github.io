@@ -234,6 +234,7 @@
 <li>如果Dilation&gt;1,那么就用公式替换之前的卷积核</li>
 <li>对前n-1层的步长累乘</li>
 </ol>
+<h3 id="有效感受野-Effective-Reception-Field-ERF"><a href="#有效感受野-Effective-Reception-Field-ERF" class="headerlink" title="有效感受野(Effective Reception Field, ERF)"></a>有效感受野(Effective Reception Field, ERF)</h3><p>有效感受野指的是并不是感受野内所有像素对输出向量的贡献相同，在很多情况下感受野区域内的影响分别是高斯，有效感受野仅占理论感受野的一部分，其搞事分布从中心到边缘快速衰减。<br><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220614_5.jpeg"><br>其实很好理解，我们来分析第1层，下图标出了conv3x3 s1卷积操作对每个输入值的使用次数，用蓝色数字表示，很明显越靠近感受野中心的值被使用次数越多，靠近边缘的值使用次数越少。5x5输入是特殊情况刚好符合高斯分布，3x3输入时所有值的使用次数都是1，大于5x5输入时大部分位于中心区域的值使用次数都是9，边缘衰减到1。每个卷积层都有这种规律，经过多层堆叠，总体感受野就会呈现高斯分布。<br><img src="https://raw.githubusercontent.com/stepstep123/TestUploadImage/master/20220614_6.jpeg"></p>
 <p>​</p>
 
 
